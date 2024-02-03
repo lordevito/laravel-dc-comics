@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Comic;
 use Illuminate\Http\Request;
 use App\Http\Requests\ComicRequest;
@@ -43,7 +44,7 @@ class ComicController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Comic $comic)
     {
         return view('comics.show', compact('comic'));
     }
@@ -51,24 +52,30 @@ class ComicController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Comic $comic)
     {
-        
+        return view('comics.edit', compact('comic'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ComicRequest $request, Comic $comic)
     {
-       
+        $form_data = $request->all();
+
+        $comic->update(($form_data));
+
+        return view('comics.show', compact('comic'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Comic $comic)
     {
-        
+        $comic->delete();
+
+        return redirect()->route('comics.index')->with('deleted', "Comic $comic->title has been successfully deleted");
     }
 }

@@ -12,7 +12,7 @@
             <img src="{{ $comic->thumb }}" class="w-50 mb-2" alt="comic-thumb">
         </div>
         <div class="col">
-            <h5><span class="text-primary">Series:</span> {{ $comic->series }}</h5>
+            <h5><span class="text-primary">Series:</span> {{!! $comic->series !!}}</h5>
             <h5><span class="text-primary">Type:</span> {{ $comic->type }}</h5>
             <h5><span class="text-primary">Sale Date:</span> {{ $comic->sale_date }}</h5>
             <h6><span class="text-primary">Writers:</span> {{ $comic->writers }}</h6>
